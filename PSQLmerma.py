@@ -5,6 +5,7 @@ Created on Wed Aug  5 10:45:37 2020
 Archivo: PSQLmerma.py
 Comentarios: Clase que implementa la cosulta de el nobre del cliente y el pedido
 en la base de datos de merma, para la la GUI del BCT
+Versión: 2.0
 @author: LFLQ
 """
 

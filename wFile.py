@@ -19,14 +19,14 @@ class wFile:
     def EscribeArch(self, j = False):
         self.lec = math.fabs(0.5*self.i*math.cos(math.sqrt(100*self.i)))
         if j == True:
-            file1 = open("/home/pi/Desktop/ProgGUI/GUI/resources/sampleText.txt","w")
+            file1 = open("/home/pi/Desktop/InterfazG-BCT/resources/sampleText.txt","w")
             self.i = 0
             self.lec = 0
             self.hValue = 0
             file1.write(str(self.i) + "," + str(self.lec) + os.linesep)
             j = False
         else:
-            file = open("/home/pi/Desktop/ProgGUI/GUI/resources/sampleText.txt","a")
+            file = open("/home/pi/Desktop/InterfazG-BCT/resources/sampleText.txt","a")
             file.write(str(self.i) + "," + str(self.lec) + os.linesep)
             self.i+= 0.1
             if self.lec > self.hValue:

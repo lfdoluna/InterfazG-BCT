@@ -2,7 +2,9 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Oct 18 16:43:46 2019
-GUI2_BCT run file
+Archivo: GUI2_run.py
+Comentarios: GUI2_BCT Crea la ventana princippal de la GUI
+Version: 1.0
 @author: pi
 """
 

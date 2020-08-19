@@ -2,8 +2,12 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Oct  9 13:04:37 2019
+Archivo: GUIS¿2_BCT.py
+Versión: 2.1
+Comentario: Clase que implementa la vetana principal de la interfaz grafica de 
+usuario de la prueba de compresión a cajas de carton corrugado
 Modificacion GUI_BCT.py a python 2.7
-@author: pi
+@author: LFLQ
 """
 #IMPORTAMOS LIBRERIAS NECESARIAS.
 from Tkinter import PhotoImage,\
@@ -69,11 +73,11 @@ class GUI2_BCT:
         self.pdfB = Button(self.marco1, text = "Generar informe\nPDF", command = self.exportPDF)
         self.pdfB.grid(row = 1, column = 3)
         #Inicializar imagenes
-        self.imgbtnAr = PhotoImage(file = '/home/pi/Desktop/ProgGUI/GUI/resources/img/button/flechaArriba.png')
-        self.imgbtnAb = PhotoImage(file = '/home/pi/Desktop/ProgGUI/GUI/resources/img/button/flechaAbajo.png')
-        self.imgbtnPa = PhotoImage(file = '/home/pi/Desktop/ProgGUI/GUI/resources/img/button/botonR.png')
-        self.imgbtnArr= PhotoImage(file = '/home/pi/Desktop/ProgGUI/GUI/resources/img/button/botonV.png')
-        self.imgbtnRe = PhotoImage(file = '/home/pi/Desktop/ProgGUI/GUI/resources/img/button/reiniciar.png')
+        self.imgbtnAr = PhotoImage(file = '/home/pi/Desktop/InterfazG-BCT/resources/img/button/flechaArriba.png')
+        self.imgbtnAb = PhotoImage(file = '/home/pi/Desktop/InterfazG-BCT/resources/img/button/flechaAbajo.png')
+        self.imgbtnPa = PhotoImage(file = '/home/pi/Desktop/InterfazG-BCT/resources/img/button/botonR.png')
+        self.imgbtnArr= PhotoImage(file = '/home/pi/Desktop/InterfazG-BCT/resources/img/button/botonV.png')
+        self.imgbtnRe = PhotoImage(file = '/home/pi/Desktop/InterfazG-BCT/resources/img/button/reiniciar.png')
         
         # Botón cerrar
         self.button = Button(self.marco1, text="CERRAR", command=self.cerrar, fg="white", bg = 'red')
@@ -235,7 +239,7 @@ class GUI2_BCT:
         if self.bandera == True:
             # PRIMERO OBTENEMOS EL VALOR
             self.xyValue = self.fW.EscribeArch(False)
-            pullData = open("/home/pi/Desktop/ProgGUI/GUI/resources/sampleText.txt","r").read()
+            pullData = open("/home/pi/Desktop/InterfazG-BCT/resources/sampleText.txt","r").read()
             dataList = pullData.split('\n')
             self.xList = []
             self.yList = []
@@ -286,7 +290,7 @@ class GUI2_BCT:
                 self.docPDF.reset_num(self.now)
                 self.banderaDATA = False
                 try:
-                    comando = 'mv /home/pi/Desktop/ProgGUI/GUI/resources/graf/*.png /home/pi/Desktop/ProgGUI/GUI/resources/graf/old'
+                    comando = 'mv /home/pi/Desktop/InterfazG-BCT/resources/graf/*.png /home/pi/Desktop/InterfazG-BCT/resources/graf/old'
                     commands.getoutput(comando)
                 except:
                     print 'Imagenes ya eliminadas'
@@ -335,7 +339,7 @@ class GUI2_BCT:
             print 'error'
         plt.xlabel('Desplazamiento (mm)')
         plt.ylabel("BCT (kg)")
-        plt.savefig('/home/pi/Desktop/ProgGUI/GUI/resources/graf/GraficoBCT_{}.png'.format(self.num_prueb),
+        plt.savefig('/home/pi/Desktop/InterfazG-BCT/resources/graf/GraficoBCT_{}.png'.format(self.num_prueb),
                     dpi = 80,
                     transparent = True)
         print("Grafico creado")

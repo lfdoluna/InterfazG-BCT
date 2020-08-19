@@ -2,8 +2,11 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jul  3 13:04:43 2020
-
-@author: pi
+Archivo: DATAin.py
+Comentarios: Clase que implementa la ejecución de una ventana en tkinter que 
+recolecta información de parte del usuario
+Versión: 2.1
+@author: LFLQ
 """
 from Tkinter import PhotoImage,\
                     Label,\
@@ -69,10 +72,10 @@ class DATAin:
         self.marco3.grid()
         
         # AGREGAGOS CONTENIDO A PESTAÑA 1
-        self.IMGcaja = PhotoImage(file = '/home/pi/Desktop/ProgGUI/GUI/resources/img/cajaDATA/caja.png')
-        self.IMGancho= PhotoImage(file = '/home/pi/Desktop/ProgGUI/GUI/resources/img/cajaDATA/anchoSelect.png')
-        self.IMGlargo= PhotoImage(file = '/home/pi/Desktop/ProgGUI/GUI/resources/img/cajaDATA/largoSelect.png')
-        self.IMGalto = PhotoImage(file = '/home/pi/Desktop/ProgGUI/GUI/resources/img/cajaDATA/altoSelect.png')
+        self.IMGcaja = PhotoImage(file = '/home/pi/Desktop/InterfazG-BCT/resources/img/cajaDATA/caja.png')
+        self.IMGancho= PhotoImage(file = '/home/pi/Desktop/InterfazG-BCT/resources/img/cajaDATA/anchoSelect.png')
+        self.IMGlargo= PhotoImage(file = '/home/pi/Desktop/InterfazG-BCT/resources/img/cajaDATA/largoSelect.png')
+        self.IMGalto = PhotoImage(file = '/home/pi/Desktop/InterfazG-BCT/resources/img/cajaDATA/altoSelect.png')
         
         self.cajaLB = Label(self.page1, image = self.IMGcaja)
         self.cajaLB.grid(row = 0, column = 4, rowspan = 5, columnspan = 3)

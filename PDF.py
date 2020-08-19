@@ -96,7 +96,7 @@ class PDF:
         self.story.append(NextPageTemplate('UnaColumna'))
         
         #***************** Agregar imagen ***************** 
-        graf = Image('/home/pi/Desktop/ProgGUI/GUI/resources/graf/GraficoBCT_{}.png'.format(self.num_prueb))
+        graf = Image('/home/pi/Desktop/InterfazG-BCT/resources/graf/GraficoBCT_{}.png'.format(self.num_prueb))
         self.story.append(graf)
         
         etiqueta_grafico = "<b><i>Gráfico {}.1.</i></b> Gráfico del ensayo de BCT de la prueba {}.".format(self.num_prueb, self.num_prueb)
@@ -163,7 +163,7 @@ class PDF:
         self.page_init.append(self.story)
         doc.build(self.story)
         
-    def load_data(self, largo, ancho, alto):
+    def load_data(self, largo, ancho, alto, *od):
         largoC = str(largo) + " cm"
         anchoC = str(ancho) + " cm"
         altoC = str(alto) + " cm"
