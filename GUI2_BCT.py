@@ -142,6 +142,8 @@ class GUI2_BCT:
         self.alturaC = 0
         self.anchoC = 0
         self.largoC = 0
+        self.Cliente = ""
+        self.Producto = ""
         self.InfoCj = []
         self.resetFile(False)
         
@@ -204,7 +206,7 @@ class GUI2_BCT:
         elif self.num_prueb != 0 and self.num_pruebaR: 
             #and path.exists('/home/pi/Desktop/ProgGUI/GUI/resources/graf/GraficoBCT_{}.png'.format(self.num_pruebaR)):
             if self.num_prueb == 1:
-                self.docPDF.load_data(largo = self.largoC, ancho = self.anchoC, alto = self.alturaC)
+                self.docPDF.load_data(largo = self.largoC, ancho = self.anchoC, alto = self.alturaC, prod = self.Producto, clie = self.Cliente)
             desp = float(self.xyValue[0])*0.005
             self.xyValue[0] = 0
             self.docPDF.add_PDF(self.segundos, self.xyValue[2], desp)
@@ -294,8 +296,8 @@ class GUI2_BCT:
                     commands.getoutput(comando)
                 except:
                     print 'Imagenes ya eliminadas'
+                self.ventanaDATA()
             print(str(self.xyValue) + " resetFile0 ") + str(borra)
-        self.ventanaDATA()
                 
                 
     def StartG(self):
@@ -303,7 +305,12 @@ class GUI2_BCT:
             self.alturaC = self.marco2.alturaDATA
             self.anchoC = self.marco2.anchoDATA
             self.largoC = self.marco2.largoDATA
-            self.InfoCj = self.marco2.Datos
+            self.Cliente = self.marco2.cliente
+            self.Producto = self.marco2.Producto
+            try:
+                self.InfoCj = self.marco2.Datos
+            except:
+                print 'No coloco datos extras'
             self.num_prueb += 1
             print self.alturaC, self.anchoC, self.largoC
             respuesta=tkMessageBox.askyesno("Cuidado", 

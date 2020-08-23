@@ -84,9 +84,6 @@ class PDF:
         self.tiemp = t
         self.Bh = BCTh
         self.Def = defor
-        
-        if self.num_prueb == 0:
-            self.story.append(self.t)
             
         self.num_prueb += 1
         print "Número de prueba " + str(self.num_prueb) + " en PDF"
@@ -163,7 +160,7 @@ class PDF:
         self.page_init.append(self.story)
         doc.build(self.story)
         
-    def load_data(self, largo, ancho, alto, *od):
+    def load_data(self, largo, ancho, alto, prod, clie, *datos):
         largoC = str(largo) + " cm"
         anchoC = str(ancho) + " cm"
         altoC = str(alto) + " cm"
@@ -171,6 +168,18 @@ class PDF:
         data= [['Largo', 'Ancho', 'Alto', 'Perímetro'],
                [largoC, anchoC, altoC, perC]]
         
+        # Titulo
+        self.story.append(Paragraph("Informe del ensayo de resistencia a la compresión (<b><i>BCT</i></b>)", 
+                                    self.estilo['Title']))
+        
+        # Cuerpo
+        self.story.append(Paragraph("<b>Producto:</b> {}".format(prod)
+                                    , self.estilo['CuerpoJ']))
+        self.story.append(Paragraph("<b>Cliente:</b> {}".format(clie)
+                                    , self.estilo['CuerpoJ']))
+        
+        etiqueta_grafico = "<b><i>Tabla 1.1.</i></b> Dimensiones de la caja."
+        self.story.append(Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
         # Insertar la tabla con los datos de la variable 'data'
         self.t=Table(data)
         self.t.setStyle(TableStyle([('BACKGROUND',(0,0),(3,0),colors.darkorange),
@@ -179,6 +188,13 @@ class PDF:
                                ('BACKGROUND',(0,1),(-1,-1),colors.navajowhite),
                                ('TEXTCOLOR',(0,1),(3,1),colors.black),
                                ('ALIGN',(0,1), (-1,-1), 'CENTER')]))
+        self.story.append(self.t)
+        
+        etiqueta_grafico = "<b><i>Tabla 1.2.</i></b> Descripción de la caja."
+        self.story.append(Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
+        
+        # --------- SALTO DE PÁGINA --------------
+        self.story.append(PageBreak())
         
     def reset_num(self, tiempo_ahora):
         self.now = tiempo_ahora

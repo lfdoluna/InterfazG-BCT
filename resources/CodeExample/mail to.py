@@ -18,8 +18,8 @@ msg = MIMEMultipart()
  
  
 # Parámetros del correo
-password = "archimex96"
-msg['From'] = "lfdo.luna@archimex.com.mx"
+password = "archimex*19"
+msg['From'] = "practicantes.bi@archimex.com.mx"
 msg['To'] = "lflunaq@gmail.com"
 msg['Subject'] = "Prueba correo archivo adjunto"
 
@@ -27,7 +27,7 @@ msg['Subject'] = "Prueba correo archivo adjunto"
 msg.attach(MIMEText('Correo de prueba en el envio de archivo adjunto', 'plain', 'utf-8'))
 
 # Adjuntar archivo
-att1 = MIMEText(open('/home/pi/Desktop/BCT_reporte.pdf', 'rb').read(), 'base64', 'utf-8')
+att1 = MIMEText(open('/home/pi/Desktop/Reportes_Generados/2020/Agosto/BCT_reporte_19-Agosto-2020_13.18.pdf', 'rb').read(), 'base64', 'utf-8')
 att1["Content-Type"] = 'application/octet-stream'
 
 # Agregamos al correo
