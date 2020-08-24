@@ -1,1 +1,5 @@
-/home/pi/Desktop/ProgGUI/GUI/resources/CodeExample/
+# Ignora directorio resources
+resources/
+
+# Ignora archivos *.pyc
+*.pyc
