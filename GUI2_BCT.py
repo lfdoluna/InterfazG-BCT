@@ -206,7 +206,7 @@ class GUI2_BCT:
         elif self.num_prueb != 0 and self.num_pruebaR: 
             #and path.exists('/home/pi/Desktop/ProgGUI/GUI/resources/graf/GraficoBCT_{}.png'.format(self.num_pruebaR)):
             if self.num_prueb == 1:
-                self.docPDF.load_data(largo = self.largoC, ancho = self.anchoC, alto = self.alturaC, prod = self.Producto, clie = self.Cliente)
+                self.docPDF.load_data(largo = self.largoC, ancho = self.anchoC, alto = self.alturaC, prod = self.Producto, clie = self.Cliente, datos = self.InfoCj)
             desp = float(self.xyValue[0])*0.005
             self.xyValue[0] = 0
             self.docPDF.add_PDF(self.segundos, self.xyValue[2], desp)

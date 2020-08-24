@@ -31,6 +31,8 @@ class DATAin:
         self.botonClics = 0
         self.bandDATA = 3
         self.operacion=""
+        self.cliente = ''
+        self.Producto = ''
         self.alturaDATA = 0
         self.anchoDATA = 0
         self.largoDATA = 0

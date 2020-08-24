@@ -160,13 +160,15 @@ class PDF:
         self.page_init.append(self.story)
         doc.build(self.story)
         
-    def load_data(self, largo, ancho, alto, prod, clie, *datos):
+    def load_data(self, largo, ancho, alto, prod, clie, datos):
         largoC = str(largo) + " cm"
         anchoC = str(ancho) + " cm"
         altoC = str(alto) + " cm"
         perC = str(largo+ancho+alto) + ' cm'
         data= [['Largo', 'Ancho', 'Alto', 'Perímetro'],
                [largoC, anchoC, altoC, perC]]
+        data1=[['Estilo de\ncaja', 'Tipo de\nflauta', 'Dirección de\nla flauta', 'Perímetro'],
+               [datos[0],       datos[1],       datos[2],      perC]]
         
         # Titulo
         self.story.append(Paragraph("Informe del ensayo de resistencia a la compresión (<b><i>BCT</i></b>)", 
@@ -180,10 +182,10 @@ class PDF:
         
         etiqueta_grafico = "<b><i>Tabla 1.1.</i></b> Dimensiones de la caja."
         self.story.append(Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
-        # Insertar la tabla con los datos de la variable 'data'
+        # Insertar la tabla con los datos de la variable 'data' (Dimensiones de la caja)
         self.t=Table(data)
         self.t.setStyle(TableStyle([('BACKGROUND',(0,0),(3,0),colors.darkorange),
-                               ('GRID', (0, 0), (3, 1), 1, colors.black),
+                               ('GRID', (0, 0), (-1, -1), 1, colors.black),
                                ('TEXTCOLOR',(0,0),(3,0),colors.whitesmoke),
                                ('BACKGROUND',(0,1),(-1,-1),colors.navajowhite),
                                ('TEXTCOLOR',(0,1),(3,1),colors.black),
@@ -192,7 +194,16 @@ class PDF:
         
         etiqueta_grafico = "<b><i>Tabla 1.2.</i></b> Descripción de la caja."
         self.story.append(Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
-        
+        # Insertar la tabla con los datos de la variable 'data'
+        self.t1=Table(data1)
+        self.t1.setStyle(TableStyle([('BACKGROUND',(0,0),(3,0),colors.darkorange),
+                               ('GRID', (0, 0), (-1, -1), 1, colors.black),
+                               ('TEXTCOLOR',(0,0),(3,0),colors.whitesmoke),
+                               ('BACKGROUND',(0,1),(-1,-1),colors.navajowhite),
+                               ('TEXTCOLOR',(0,1),(3,1),colors.black),
+                               ('ALIGN',(0,0), (-1,-1), 'CENTER'),
+                               ('VALIGN',(0,0),(-1,-1),'MIDDLE')]))
+        self.story.append(self.t1)
         # --------- SALTO DE PÁGINA --------------
         self.story.append(PageBreak())
         
