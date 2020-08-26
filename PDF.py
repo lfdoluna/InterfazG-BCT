@@ -70,14 +70,14 @@ class PDF:
         canvas.line(cm*2.6 , letter[1] - 65, letter[0] - 65, letter[1] - 65)
         logo = ImageReader('http://archimex.com.mx/img/archimex-logo-600.jpg')
         canvas.drawImage(logo, cm*13.7, letter[1]-64.33, 173.54, 56.70, mask='auto')
-        logo1 = ImageReader('http://192.168.5.243/oee/__view/img/logo-final.png')
-        canvas.drawImage(logo1, cm*11.5, letter[1]-64.33+0.125*cm, 2.09*cm, 1.80*cm, mask='auto')
         canvas.restoreState()
 
     def pie(self, canvas,doc):
         canvas.saveState()
         canvas.setFont('Times-Roman',9)
         canvas.drawString(cm, 0.75 * cm, "Página %d" % doc.page)
+        logo1 = ImageReader('http://192.168.5.243/oee/__view/img/logo-final.png')
+        canvas.drawImage(logo1, 17.5*cm, 0.75*cm, 2.09*cm, 1.80*cm, mask='auto')
         canvas.restoreState()
         
     def add_PDF(self, t, BCTh, defor):
@@ -167,8 +167,10 @@ class PDF:
         perC = str(largo+ancho+alto) + ' cm'
         data= [['Largo', 'Ancho', 'Alto', 'Perímetro'],
                [largoC, anchoC, altoC, perC]]
-        data1=[['Estilo de\ncaja', 'Tipo de\nflauta', 'Dirección de\nla flauta', 'Perímetro'],
-               [datos[0],       datos[1],       datos[2],      perC]]
+        data1=[['Estilo de\ncaja', 'Tipo de flauta', 'Dirección de\nla flauta', 'Grado del\nmaterial', 'Tipo de unión'],
+               [datos[0],       datos[1],           datos[2],                   datos[3],               datos[4]]]
+        data2=[['Método de cierre', 'Orientación de la prueba', 'Número de pruebas'],
+               [datos[5],           datos[6],                   self.num_prueb + 1]]
         
         # Titulo
         self.story.append(Paragraph("Informe del ensayo de resistencia a la compresión (<b><i>BCT</i></b>)", 
@@ -189,21 +191,33 @@ class PDF:
                                ('TEXTCOLOR',(0,0),(3,0),colors.whitesmoke),
                                ('BACKGROUND',(0,1),(-1,-1),colors.navajowhite),
                                ('TEXTCOLOR',(0,1),(3,1),colors.black),
-                               ('ALIGN',(0,1), (-1,-1), 'CENTER')]))
+                               ('ALIGN',(0,0), (-1,-1), 'CENTER')]))
         self.story.append(self.t)
-        
+        self.story.append(Paragraph('.', self.estilo['CuerpoC']))
         etiqueta_grafico = "<b><i>Tabla 1.2.</i></b> Descripción de la caja."
         self.story.append(Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
         # Insertar la tabla con los datos de la variable 'data'
         self.t1=Table(data1)
-        self.t1.setStyle(TableStyle([('BACKGROUND',(0,0),(3,0),colors.darkorange),
+        self.t1.setStyle(TableStyle([('BACKGROUND',(0,0),(4,0),colors.darkorange),
                                ('GRID', (0, 0), (-1, -1), 1, colors.black),
-                               ('TEXTCOLOR',(0,0),(3,0),colors.whitesmoke),
+                               ('TEXTCOLOR',(0,0),(4,0),colors.whitesmoke),
                                ('BACKGROUND',(0,1),(-1,-1),colors.navajowhite),
-                               ('TEXTCOLOR',(0,1),(3,1),colors.black),
+                               ('TEXTCOLOR',(0,1),(4,1),colors.black),
                                ('ALIGN',(0,0), (-1,-1), 'CENTER'),
                                ('VALIGN',(0,0),(-1,-1),'MIDDLE')]))
         self.story.append(self.t1)
+        self.story.append(Paragraph('.', self.estilo['CuerpoC']))
+        etiqueta_grafico = "<b><i>Tabla 1.3.</i></b> Descripción de la prueba."
+        self.story.append(Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
+        self.t2=Table(data2)
+        self.t2.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.darkorange),
+                               ('GRID', (0, 0), (-1, -1), 1, colors.black),
+                               ('TEXTCOLOR',(0,0),(-1,0),colors.whitesmoke),
+                               ('BACKGROUND',(0,1),(-1,-1),colors.navajowhite),
+                               ('TEXTCOLOR',(0,1),(-1,1),colors.black),
+                               ('ALIGN',(0,0), (-1,-1), 'CENTER'),
+                               ('VALIGN',(0,0),(-1,-1),'MIDDLE')]))
+        self.story.append(self.t2)
         # --------- SALTO DE PÁGINA --------------
         self.story.append(PageBreak())
         
