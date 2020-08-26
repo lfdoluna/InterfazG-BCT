@@ -39,14 +39,15 @@ def encabezado(canvas,doc):
     canvas.line(cm*2.6 , letter[1] - 65, letter[0] - 65, letter[1] - 65)
     logo = ImageReader('http://archimex.com.mx/img/archimex-logo-600.jpg')
     canvas.drawImage(logo, cm*13.7, letter[1]-64.33, 173.54, 56.70, mask='auto')
-    logo1 = ImageReader('http://192.168.5.243/oee/__view/img/logo-final.png')
-    canvas.drawImage(logo1, cm*11.5, letter[1]-64.33+0.125*cm, 2.09*cm, 1.80*cm, mask='auto')
     canvas.restoreState()
     
 def pie(canvas,doc):
     canvas.saveState()
     canvas.setFont('Times-Roman',9)
-    canvas.drawString(cm, 0.75 * cm, "Página %d" % doc.page)
+    canvas.drawString(2.6*cm, letter[1]-(25.7*cm), "Página %d" % doc.page)
+    logo1 = ImageReader('http://192.168.5.243/oee/__view/img/logo-final.png')
+    canvas.drawImage(logo1, 17.5*cm, 0.75*cm, 2.09*cm, 1.80*cm, mask='auto')
+    canvas.line(2.6*cm, letter[1]-(25.3*cm), letter[0]-60, letter[1]-(25.3*cm))
     canvas.restoreState()
 
 #NIVEL 2: CREAMOS LOS FLOWABLES
@@ -60,6 +61,7 @@ estilo.add(ParagraphStyle(name='CuerpoC',
 
 #Iniciamos el platypus story
 story=[]
+story.append('')
 
 #Añadimos al story los flowables. Hay que tener en cuenta que se inicia
 #con el primer pageTemplate "UnaColumna"
@@ -73,7 +75,7 @@ story.append(Paragraph("Esto es el texto del Frame que pertenece al" +\
                 
 story.append(NextPageTemplate('UnaColumna'))
 story.append(PageBreak())
-story.append(Paragraph("Regresamos al texto del Frame normal del" +\
+story[0]=(Paragraph("Regresamos al texto del Frame normal del" +\
                         " pagetemplate de dos columnas"*100, estilo['Normal']))
 
 #NIVEL 3: CREAMOS LOS FRAMES, para luego asignarlos a un pagetemplate.
@@ -82,7 +84,7 @@ story.append(Paragraph("Regresamos al texto del Frame normal del" +\
 # topPadding=6, id=None, showBoundary=0)
 
 #1. Frame que contendrá a toda el contenido de una hoja
-frameN = Frame(cm*2.5, cm, cm*17, 697, id='normal')
+frameN = Frame(cm*2.5, letter[1]-(25.5*cm), cm*17, 23.4*cm, id='normal')
 print str(cm*18)
 #2. Frame de columnas
 frame1 = Frame(inch, inch, 220, 697, id='col1')
