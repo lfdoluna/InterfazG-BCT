@@ -37,6 +37,8 @@ class PDF:
                                   alignment= TA_CENTER, 
                                   spaceAfter=2))
         self.story = []
+#        for i in range(12):
+#            self.story.append("")
         self.page_init = []
         
         #CREAMOS LOS FRAMES, para luego asignarlos a un pagetemplate.
@@ -170,20 +172,20 @@ class PDF:
         data1=[['Estilo de\ncaja', 'Tipo de flauta', 'Dirección de\nla flauta', 'Grado del\nmaterial', 'Tipo de unión'],
                [datos[0],       datos[1],           datos[2],                   datos[3],               datos[4]]]
         data2=[['Método de cierre', 'Orientación de la prueba', 'Número de pruebas'],
-               [datos[5],           datos[6],                   self.num_prueb + 1]]
+               [datos[5],           datos[6],                   self.num_prueb]]
         
         # Titulo
-        self.story.append(Paragraph("Informe del ensayo de resistencia a la compresión (<b><i>BCT</i></b>)", 
+        self.story[0] = (Paragraph("Informe del ensayo de resistencia a la compresión (<b><i>BCT</i></b>)", 
                                     self.estilo['Title']))
         
         # Cuerpo
-        self.story.append(Paragraph("<b>Producto:</b> {}".format(prod)
+        self.story[1] = (Paragraph("<b>Producto:</b> {}".format(prod)
                                     , self.estilo['CuerpoJ']))
-        self.story.append(Paragraph("<b>Cliente:</b> {}".format(clie)
+        self.story[2] = (Paragraph("<b>Cliente:</b> {}".format(clie)
                                     , self.estilo['CuerpoJ']))
         
         etiqueta_grafico = "<b><i>Tabla 1.1.</i></b> Dimensiones de la caja."
-        self.story.append(Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
+        self.story[3] = (Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
         # Insertar la tabla con los datos de la variable 'data' (Dimensiones de la caja)
         self.t=Table(data)
         self.t.setStyle(TableStyle([('BACKGROUND',(0,0),(3,0),colors.darkorange),
@@ -192,10 +194,10 @@ class PDF:
                                ('BACKGROUND',(0,1),(-1,-1),colors.navajowhite),
                                ('TEXTCOLOR',(0,1),(3,1),colors.black),
                                ('ALIGN',(0,0), (-1,-1), 'CENTER')]))
-        self.story.append(self.t)
-        self.story.append(Paragraph('.', self.estilo['CuerpoC']))
+        self.story[4] = (self.t)
+        self.story[5] = (Paragraph('.', self.estilo['CuerpoC']))
         etiqueta_grafico = "<b><i>Tabla 1.2.</i></b> Descripción de la caja."
-        self.story.append(Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
+        self.story[6] = (Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
         # Insertar la tabla con los datos de la variable 'data'
         self.t1=Table(data1)
         self.t1.setStyle(TableStyle([('BACKGROUND',(0,0),(4,0),colors.darkorange),
@@ -205,10 +207,10 @@ class PDF:
                                ('TEXTCOLOR',(0,1),(4,1),colors.black),
                                ('ALIGN',(0,0), (-1,-1), 'CENTER'),
                                ('VALIGN',(0,0),(-1,-1),'MIDDLE')]))
-        self.story.append(self.t1)
-        self.story.append(Paragraph('.', self.estilo['CuerpoC']))
+        self.story[7] = (self.t1)
+        self.story[8] = (Paragraph('.', self.estilo['CuerpoC']))
         etiqueta_grafico = "<b><i>Tabla 1.3.</i></b> Descripción de la prueba."
-        self.story.append(Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
+        self.story[9] = (Paragraph(etiqueta_grafico, self.estilo['CuerpoC']))
         self.t2=Table(data2)
         self.t2.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.darkorange),
                                ('GRID', (0, 0), (-1, -1), 1, colors.black),
@@ -217,11 +219,13 @@ class PDF:
                                ('TEXTCOLOR',(0,1),(-1,1),colors.black),
                                ('ALIGN',(0,0), (-1,-1), 'CENTER'),
                                ('VALIGN',(0,0),(-1,-1),'MIDDLE')]))
-        self.story.append(self.t2)
+        self.story[10] = (self.t2)
         # --------- SALTO DE PÁGINA --------------
-        self.story.append(PageBreak())
+        self.story[11] = (PageBreak())
         
     def reset_num(self, tiempo_ahora):
         self.now = tiempo_ahora
         self.num_prueb = 0
+        for i in range(12):
+            self.story.append("")
         print 'Número de prueba a cero'

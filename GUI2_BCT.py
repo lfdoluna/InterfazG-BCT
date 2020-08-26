@@ -10,13 +10,13 @@ Modificacion GUI_BCT.py a python 2.7
 @author: LFLQ
 """
 #IMPORTAMOS LIBRERIAS NECESARIAS.
-from Tkinter import PhotoImage,\
-                    Button,\
-                    Label,\
-                    Text,\
-                    Frame,\
-                    END,\
-                    WORD
+from Tkinter import (PhotoImage,
+                    Button,
+                    Label,
+                    Text,
+                    Frame,
+                    END,
+                    WORD)
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2Tk
 from matplotlib.figure import Figure
 from matplotlib import style
@@ -205,14 +205,15 @@ class GUI2_BCT:
             tkMessageBox.showinfo('Atención', 'Debe realizar la prueba antes de exportar los datos')
         elif self.num_prueb != 0 and self.num_pruebaR: 
             #and path.exists('/home/pi/Desktop/ProgGUI/GUI/resources/graf/GraficoBCT_{}.png'.format(self.num_pruebaR)):
-            if self.num_prueb == 1:
-                self.docPDF.load_data(largo = self.largoC, ancho = self.anchoC, alto = self.alturaC, prod = self.Producto, clie = self.Cliente, datos = self.InfoCj)
+#            if self.num_prueb == 1:
+#                self.docPDF.load_data(largo = self.largoC, ancho = self.anchoC, alto = self.alturaC, prod = self.Producto, clie = self.Cliente, datos = self.InfoCj)
             desp = float(self.xyValue[0])*0.005
             self.xyValue[0] = 0
             self.docPDF.add_PDF(self.segundos, self.xyValue[2], desp)
             self.num_pruebaR = False
             answ=tkMessageBox.askyesno("Atención", "Datos recopilados en PDF, ¿Desea realizar otra pueba?")
             if answ==False:
+                self.docPDF.load_data(largo = self.largoC, ancho = self.anchoC, alto = self.alturaC, prod = self.Producto, clie = self.Cliente, datos = self.InfoCj)
                 self.docPDF.build_PDF()
                 tkMessageBox.showinfo('Atención', "Reporte creado con éxito, Se abrirá una ventana donde podrá realizar diferentes acciones con el reporte")
                 self.final = VentanaFinal(self.master, self.now, self.docPDF.direc)
