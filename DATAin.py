@@ -8,20 +8,22 @@ recolecta información de parte del usuario
 Versión: 2.1
 @author: LFLQ
 """
-from Tkinter import PhotoImage,\
-                    Label,\
-                    Button,\
-                    Text,\
-                    END,\
-                    Toplevel,\
-                    Radiobutton,\
-                    IntVar,\
-                    StringVar#,\
+from Tkinter import (PhotoImage,
+                    Label,
+                    Button,
+                    Text,
+                    END,
+                    Toplevel,
+                    Radiobutton,
+                    IntVar,
+                    StringVar)#,\
 #                    Tk
 from ttk import Combobox
 from PSQLmerma import PSQLmerma as PSQLmerma1
 import ttk as TTK
 import tkMessageBox
+from PIL import Image
+
 #import sys
 # from tkinter import re
 
@@ -236,6 +238,11 @@ class DATAin:
                                    values = ["Arriba a abajo", "Extremo a extremo", "Lado a lado"],
                                    font =('Helvetica', 15))
         self.listOrientaC.grid(row = 1, column = 2)
+        
+        self.IMGbct = Image.open(file = '/home/pi/Desktop/InterfazG-BCT/resources/img/cajaDATA/CajaBIedit.png')
+        
+        self.cajaBCT = Label(self.page3, image = self.IMGbct)
+        self.cajaBCT.grid(row = 2, column = 0, columnspan = 3)
         
         # AGREGAMOS CONTENIDO A PAGE 4
         self.txtLB = 'Ingresar datos o buscar por número de pedido'

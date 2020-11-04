@@ -47,7 +47,7 @@ class PDF:
         # topPadding=6, id=None, showBoundary=0)
     
         #1. Frame que contendrá a toda el contenido de una hoja
-        self.frameN = ReportFrame(cm*2.5, cm, cm*17, 697, id='normal')
+        self.frameN = ReportFrame(cm*2.5, letter[1]-(25.5*cm), cm*17, 23.4*cm, id='normal')
         
         #2. Frame de columnas
         self.frame1 = ReportFrame(inch, inch, 220, 697, id='col1')
@@ -77,9 +77,14 @@ class PDF:
     def pie(self, canvas,doc):
         canvas.saveState()
         canvas.setFont('Times-Roman',9)
-        canvas.drawString(cm, 0.75 * cm, "Página %d" % doc.page)
+        canvas.drawString(2.6*cm, letter[1]-(25.7*cm), 'Archimex Corrugados y Etiquetas S.A. de C.V.')
+        canvas.drawString(2.6*cm, letter[1]-(26.1*cm), 'Kilometro 98.5 Carretera México-Puebla s/n,')
+        canvas.drawString(2.6*cm, letter[1]-(26.5*cm), 'San sebastian Tepalcatepec Cholula, Puebla.')
+        canvas.drawString(2.6*cm, letter[1]-(26.9*cm), 'C.P. 72760 Teléfono. 01222 141.52.00')
+        canvas.drawString(letter[0]/2, letter[1]-(25.7*cm), "Página %d" % doc.page)
         logo1 = ImageReader('http://192.168.5.243/oee/__view/img/logo-final.png')
         canvas.drawImage(logo1, 17.5*cm, 0.75*cm, 2.09*cm, 1.80*cm, mask='auto')
+        canvas.line(2.6*cm, letter[1]-(25.3*cm), letter[0]-60, letter[1]-(25.3*cm))
         canvas.restoreState()
         
     def add_PDF(self, t, BCTh, defor):
