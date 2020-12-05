@@ -9,8 +9,8 @@ Created on Sat Aug 15 09:57:05 2020
 from tkinter import *
 
 def motion(event):
-  print("Mouse position: (%s %s)" % (event.x, event.y))
-  return
+    print("Mouse position: (%s %s)" % (event.x, event.y))
+    return
 
 master = Tk()
 whatever_you_do = "Whatever you do will be insignificant, but it is very important that you do it.\n(Mahatma Gandhi)"
