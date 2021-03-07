@@ -3,3 +3,4 @@ resources/
 
 # Ignora archivos *.pyc
 *.pyc
+exporta.csv
